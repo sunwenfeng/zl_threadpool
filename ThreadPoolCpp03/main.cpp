@@ -8,17 +8,17 @@
   
   
 class MyTask
-{  
-public:  
-    MyTask(){}
-      
-    int run(int i, const char* p)  
-    {  
-        printf("thread[%lu] : (%d, %s)\n", pthread_self(), i, (char*)p);  
-        sleep(1);  
-        return 0;  
-    }  
-};  
+    {
+    public:
+        MyTask(){}
+
+        int run(int i, const char* p)
+        {
+            printf("thread[%lu] : (%d, %s)\n", pthread_self(), i, (char*)p);
+            sleep(1);
+            return 0;
+        }
+    };
   
 int main()  
 {  
