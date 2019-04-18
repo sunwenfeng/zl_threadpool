@@ -17,3 +17,5 @@
 
         最新做法，**完全采用C++11**技术，比如std::thread, mutex, condition_variable, atomic组件，
         还有lambda技巧，packaged_task， future等等；
+        
+ **目前阅读了C++98版和C++03版**
