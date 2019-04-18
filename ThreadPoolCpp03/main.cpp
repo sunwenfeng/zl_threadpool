@@ -26,7 +26,7 @@ int main()
     MyTask taskObj[20];
     for(int i = 0; i < 20; i++)  
     {
-        threadPool.addTask(std::bind(&MyTask::run, &taskObj[i], i, "helloworld"));
+        threadPool.addTask(std::bind(&MyTask::run, &taskObj[i], i, "helloworld"));//两个参数：int 和 char* ，返回值int
     }
 
     while(1)  

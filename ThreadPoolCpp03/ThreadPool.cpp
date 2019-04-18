@@ -1,3 +1,4 @@
+
 #include "ThreadPool.h" 
 #include <stdio.h>
 #include <assert.h>
@@ -5,19 +6,19 @@
 
 namespace zl
 {
-    ThreadPool::ThreadPool(int threadNum)
+    ThreadPool::ThreadPool(int threadNum)//构造函数
     {
         isRunning_ = true;
         threadsNum_ = threadNum;
         createThreads();
     }
 
-    ThreadPool::~ThreadPool()
+    ThreadPool::~ThreadPool()//析构函数
     {
         stop();
     }
 
-    int ThreadPool::createThreads()
+    int ThreadPool::createThreads()//创建线程池
     {
         pthread_mutex_init(&mutex_, NULL);
         pthread_cond_init(&condition_, NULL);
@@ -29,7 +30,7 @@ namespace zl
         return 0;
     }
 
-    size_t ThreadPool::addTask(const Task& task)
+    size_t ThreadPool::addTask(const Task& task)//添加任务
     {
         pthread_mutex_lock(&mutex_);
         taskQueue_.push_back(task);
@@ -39,7 +40,7 @@ namespace zl
         return size;
     }
 
-    void ThreadPool::stop()
+    void ThreadPool::stop()//销毁线程池
     {
         if (!isRunning_)
         {
@@ -84,7 +85,7 @@ namespace zl
             return task;
         }
 
-        assert(!taskQueue_.empty());
+        assert(!taskQueue_.empty());//检查参数是否为假
         task = taskQueue_.front();
         taskQueue_.pop_front();
         pthread_mutex_unlock(&mutex_);
@@ -104,8 +105,8 @@ namespace zl
                 break;
             }
 
-            assert(task);
-            task();
+            assert(task);//void assert(expression)，先判断expression，如果expression为假，则先打印错误，后终止程序
+            task();//执行任务
         }
         return 0;
     }
